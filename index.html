@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Responsive & Offline Experiment</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Responsive & Offline Web Experiment</h1>
+
+  <section class="box">
+    <h2>Form Data (localStorage)</h2>
+    <input type="text" id="name" placeholder="Enter your name">
+    <button onclick="saveData()">Save</button>
+    <p id="output"></p>
+  </section>
+
+  <section class="box">
+    <h2>Visit Tracker</h2>
+    <p id="visits"></p>
+    <p id="lastVisit"></p>
+  </section>
+
+  <section class="box">
+    <h2>Final Observations</h2>
+    <ul>
+      <li>Viewport fixed scaling & readability</li>
+      <li>Layout changes at 600px and 900px</li>
+      <li>Name, visits & time stored offline</li>
+      <li>Website works without internet</li>
+    </ul>
+  </section>
+
+<script>
+  function saveData() {
+    const name = document.getElementById("name").value;
+    localStorage.setItem("username", name);
+    document.getElementById("output").innerText = "Saved: " + name;
+  }
+
+  const storedName = localStorage.getItem("username");
+  if (storedName) {
+    document.getElementById("output").innerText = "Stored: " + storedName;
+  }
+
+  let count = localStorage.getItem("visits") || 0;
+  count++;
+  localStorage.setItem("visits", count);
+  document.getElementById("visits").innerText = "Visits: " + count;
+
+  const now = new Date().toLocaleString();
+  localStorage.setItem("lastVisit", now);
+  document.getElementById("lastVisit").innerText = "Last Visit: " + now;
+</script>
+
+</body>
+</html>
