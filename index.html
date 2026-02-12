@@ -1,51 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show My Location</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div class="circles-background"></div>
 
-    <div class="card">
-        <h2> Geolocation Finder</h2>
-        <button onclick="getLocation()">Show My Location</button>
-        <div id="loc">Click the button to find your coordinates</div>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">FlexDash</div>
+        <div class="search-box">
+            <input type="text" placeholder="Search dashboard...">
+        </div>
+        <div class="profile">
+            <span class="icon">👤</span>
+            <span>Admin</span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <aside class="sidebar">
+            <ul>
+                <li><a href="#" class="active">Dashboard</a></li>
+                <li><a href="#">Analytics</a></li>
+                <li><a href="#">Users</a></li>
+                <li><a href="#">Reports</a></li>
+                <li><a href="#">Settings</a></li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <div class="row">
+                <div class="card">
+                    <h3>Users</h3>
+                    <p>1,240</p>
+                </div>
+                <div class="card">
+                    <h3>Revenue</h3>
+                    <p>₹2.4L</p>
+                </div>
+                <div class="card">
+                    <h3>Orders</h3>
+                    <p>320</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="card blue">
+                    <h3>Growth</h3>
+                    <p>+18%</p>
+                </div>
+                <div class="card blue">
+                    <h3>Conversion</h3>
+                    <p>5.4%</p>
+                </div>
+            </div>
+        </main>
     </div>
 
-    <script>
-        // Background animation
-        function updateBackground() {
-            var bg = document.querySelector('.circles-background');
-            bg.style.setProperty('--p1', Math.random() * 100 + 'px ' + Math.random() * 100 + 'px');
-            bg.style.setProperty('--p2', Math.random() * 100 + 'px ' + Math.random() * 100 + 'px');
-            bg.style.setProperty('--p3', Math.random() * 100 + 'px ' + Math.random() * 100 + 'px');
-            bg.style.setProperty('--op', '1');
-        }
-        updateBackground();
-        setInterval(updateBackground, 2000);
-
-        // Geolocation
-        function getLocation() {
-            if (navigator.geolocation) {
-                document.getElementById('loc').innerHTML = 'Getting location...';
-                navigator.geolocation.getCurrentPosition(showPosition, showError);
-            } else {
-                document.getElementById('loc').innerHTML = 'Geolocation not supported';
-            }
-        }
-
-        function showPosition(position) {
-            document.getElementById('loc').innerHTML = 
-                'Latitude: ' + position.coords.latitude + '<br>' +
-                'Longitude: ' + position.coords.longitude;
-        }
-
-        function showError() {
-            document.getElementById('loc').innerHTML = 'Unable to get location';
-        }
-    </script>
 </body>
+
 </html>
